@@ -1,35 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+
+// app/page.tsx
+import { Header } from "@/components/Header";
+import { Sidebar } from "@/components/Sidebar";
+import { NoteCard } from "@/components/NoteCard";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 function App() {
-  const [count, setCount] = useState(0)
+    return (
+        <div className="grid min-h-screen w-full md:grid-cols-[240px_1fr]">
+            <Sidebar />
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+            <div className="flex flex-col">
+                <Header />
+
+                <ScrollArea className="flex-1 p-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {Array.from({ length: 8 }).map((_, i) => (
+                            <NoteCard key={i} />
+                        ))}
+                    </div>
+                </ScrollArea>
+            </div>
+        </div>
+    );
 }
-
-export default App
+export default App;
